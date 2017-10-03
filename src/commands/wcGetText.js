@@ -7,6 +7,5 @@ import _ from 'lodash';
 
 // Note: function name must be async to signalize WebdriverIO that this function returns a promise
 export default async function async(selector) {
-    console.log(this.wcElement(selector).value);
-    return this.wcElement(selector).value.innerText;
+    return this.wcAttribute(selector, 'innerText');
 }
