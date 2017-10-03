@@ -1,0 +1,12 @@
+{
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "lodash",
+      "syntax-async-functions",
+      "transform-regenerator",
+      "transform-runtime",
+      "transform-object-rest-spread"
+    ]
+  }
