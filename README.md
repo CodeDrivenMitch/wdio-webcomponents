@@ -10,7 +10,7 @@ Install the npm lib:
 
 Then add the plugin to your `wdio.conf` under plugins.
 
-```json
+```javascript
 {
     plugins: {
         'wdio-webcomponents': {}
@@ -31,7 +31,7 @@ You can use it just like you normally use webdriver. However, it should be noted
 ## Commands without overwrite
 When wanted, you can use this plugin without overriding the `browser.element` and `browser.elements` commands. To achieve this, add the plugin to your wdio configuration with the override property set to false, like this:
 
-```json
+```javascript
 {
     plugins: {
         'wdio-webcomponents': {
