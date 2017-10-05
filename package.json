@@ -1,8 +1,10 @@
 {
   "name": "wdio-webcomponents",
-  "version": "0.0.1",
-  "description": "WebdriverIO extension for Shadow Roots",
+  "version": "0.0.2",
+  "description": "WebdriverIO plguin to handle shadow roots and DOMs",
   "main": "lib/index.js",
+  "keywords": ["webdriver", "shadow", "root", "dom", "webcomponents", "webcomponentsjs", "polymer"],
+  "homepage": "https://github.com/Morlack/wdio-webcomponents",
   "scripts": {
     "build": "npm run clean && babel ./src -d lib",
     "clean": "npm run clean-lib && npm run clean-tmp",
@@ -43,6 +45,13 @@
     "wdio-selenium-standalone-service": "0.0.8",
     "webdriverio": "~4.8.0"
   },
-  "author": "",
-  "license": "ISC"
+  "author": {
+    "name": "Mitchell Herrijgers",
+    "email": "mitchellherrijgers@gmail.com"
+  },
+  "license": "MIT",
+  "repository": { 
+    "type" : "git", 
+    "url" : "https://github.com/Morlack/wdio-webcomponents.git"
+  }
 }
