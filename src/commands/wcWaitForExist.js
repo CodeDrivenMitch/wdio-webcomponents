@@ -19,6 +19,11 @@ export default async function async(selector, ms, reverse) {
     const errorMsg = `element ("${selector || this.lastResult.selector}") still ${isReversed} existing after ${ms}ms`
 
     return this.waitUntil(() => {
-        return !!this.wcElement(selector).value;
+        var res = this.wcElements(selector);
+        if (res && Array.isArray(res.value) && res.value.length > 0) {
+            return true
+        }
+
+        return !!res.value;
     }, ms, errorMsg)
 }
