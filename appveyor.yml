@@ -30,7 +30,6 @@ test_script:
   - node --version
   - npm --version
   # run tests
-  - npm run test
   - npm run test:appveyor
 
 # scripts to run after tests
