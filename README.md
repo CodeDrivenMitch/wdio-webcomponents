@@ -26,30 +26,4 @@ It uses a Javascript function, sent to the browser, to find the correct element/
 The code in this plugin has been modified to support more use cases, non-shadowroots and multiple element selection. You can find it in `src/finders/findElement.js`. 
 
 ## How to use
-You can use it just like you normally use webdriver. However, it should be noted that the CSS selector should contain every element with a Shadow Root on the way, or it will not be able to find it. 
-
-## Commands without overwrite
-When wanted, you can use this plugin without overriding the `browser.element` and `browser.elements` commands. To achieve this, add the plugin to your wdio configuration with the override property set to false, like this:
-
-```javascript
-{
-    plugins: {
-        'wdio-webcomponents': {
-            override: false
-        }
-    }
-}
-```
-
-now you can still use the commands which are wc-prefixed, but the normal commands use the normal code. Currently the following commands are available as native replacement:
-
-| Native command | WC command |
-|----------------|------------|
-| element | wcElement
-| elements | wcElements
-| getAttribute | wcAttribute
-| getText | wcGetText
-| isVisisble | wcIsVisisble
-| waitForExist | wcWaitForExist
-
-More commands will be added in the near future. 
+You can use it just like you normally use webdriver. However, it should be noted that the CSS selector should contain every element with a Shadow Root on the way, or it will not be able to find it.  
