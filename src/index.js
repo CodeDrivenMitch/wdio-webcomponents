@@ -14,6 +14,7 @@ class WDIOWebComponents {
 
         // add commands to WebdriverIO instance
         if(options.overwrite === undefined || options.overwrite === true) {
+            console.log("[wdio-webcomponents] Overriding native wdio element/elements commands!");
             browser.addCommand('element', wcElement.bind(browser), true);
             browser.addCommand('elements', wcElements.bind(browser), true);
         }
