@@ -13,13 +13,13 @@ exports.config = {
     logLevel: 'silent',
     coloredLogs: true,
     baseUrl: 'http://localhost:3000/',
-    waitforTimeout: 10000,
+    waitforTimeout: 100000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
     framework: 'mocha',
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000,
+        timeout: 600000,
         compilers: [
             'js:babel-register'
         ],
