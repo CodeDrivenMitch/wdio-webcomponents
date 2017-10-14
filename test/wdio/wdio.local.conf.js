@@ -12,7 +12,7 @@ exports.config = {
     sync: false,
     logLevel: 'silent',
     coloredLogs: true,
-    baseUrl: 'http://localhost:3000/',
+    baseUrl: 'https://shop.polymer-project.org/',
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
