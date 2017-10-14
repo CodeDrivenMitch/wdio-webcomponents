@@ -9,7 +9,7 @@ exports.config = {
     capabilities: [{
         browserName: 'chrome'
     }, {
-        browserName: 'edge'
+        browserName: 'ie'
     }],
     sync: false,
     logLevel: 'silent',

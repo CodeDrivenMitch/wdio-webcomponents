@@ -1,6 +1,10 @@
 # wdio-webcomponents
 
-wdio-webcomponents is a webdriver.io plugin which makes webdriver compatible with shadow roots. 
+wdio-webcomponents is a webdriver.io plugin which makes webdriver compatible with Open Shadow Roots. 
+
+With the rise of Shadow DOM in webcomponent applications, we need a solution to test the components using Webdriver(Selenium). 
+
+
 This is meant as a temporary solution until the people behind the WebDriver standard and the browser implementations can decide on a solution (discussion has been going on since 2014, untill this day, with no clear solution in sight).
 
 ## Installation
