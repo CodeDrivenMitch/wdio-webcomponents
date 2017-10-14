@@ -8,8 +8,6 @@ exports.config = {
     ],
     capabilities: [{
         browserName: 'chrome'
-    }, {
-        browserName: 'ie'
     }],
     sync: false,
     logLevel: 'silent',
