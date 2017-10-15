@@ -1,13 +1,12 @@
-import _ from 'lodash';
-import findElement from '../finders/findElement'
+import findElement from "../finders/findElement";
 
 /**
- * @alias browser.wcElement
+ * Override of the browser.elements command. Sends the findElement function to the browser.
+ *
+ * @alias browser.elements
  * @param {string=} selector
  */
-
-// Note: function name must be async to signalize WebdriverIO that this function returns a promise
 export default async function async(selector) {
-  return this.execute(findElement, selector, true);
+    return this.execute(findElement, selector, true);
 
 }

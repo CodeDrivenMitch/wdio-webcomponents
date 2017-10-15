@@ -1,9 +1,11 @@
-import findElement from '../finders/findElement'
+import findElement from "../finders/findElement";
 
 /**
- * @alias browser.wcElement
+ * Override of the browser.element command. Sends the findElement function to the browser.
+ *
+ * @alias browser.element
  * @param {string=} selector
  */
 export default async function async(selector) {
-  return this.execute(findElement, selector, false);
+    return this.execute(findElement, selector, false);
 }
