@@ -3,9 +3,9 @@ import wcElements from "./protocol/wcElements.js";
 
 class WDIOWebComponents {
 
-    constructor(browser, options) {
+    constructor(browser) {
         if (!browser) {
-            throw new Error('A WebdriverIO instance is needed to initialise wdio-screenshot')
+            throw new Error('A WebdriverIO instance is needed to initialise wdio-webcomponents')
         }
 
         // add commands to WebdriverIO instance
