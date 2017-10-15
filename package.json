@@ -1,7 +1,7 @@
 {
   "name": "wdio-webcomponents",
   "version": "0.0.3",
-  "description": "WebdriverIO plguin to handle shadow roots and DOMs",
+  "description": "WebdriverIO plugin to handle shadow roots and DOMs",
   "main": "lib/index.js",
   "keywords": ["webdriver", "shadow", "root", "dom", "webcomponents", "webcomponentsjs", "polymer"],
   "homepage": "https://github.com/Morlack/wdio-webcomponents",
