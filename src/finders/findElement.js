@@ -19,16 +19,14 @@ export default function (selector, multiple) {
                 currentElement = currentElement.shadowRoot;
             }
 
-            if (i === selectors.length - 1) {
-                // Final selector part. If multiple=true, try to find multiple elements
-                if (multiple) {
-                    currentElement = currentElement.querySelectorAll(selectors[selectors.length - 1]);
-                } else {
-                    currentElement = currentElement.querySelector(selectors[selectors.length - 1]);
-                }
-                break;
+            var iterSelector = selectors[i].split('::').join(' ');
+            debugger;
+
+            if (i === selectors.length - 1 && multiple) {
+                // Final selector part and multiple=true, try to find multiple elements
+                currentElement = currentElement.querySelectorAll(iterSelector);
             } else {
-                currentElement = currentElement.querySelector(selectors[i]);
+                currentElement = currentElement.querySelector(iterSelector);
             }
 
             if (!currentElement) {

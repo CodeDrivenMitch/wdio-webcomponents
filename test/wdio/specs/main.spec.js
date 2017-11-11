@@ -50,6 +50,14 @@ describe('integration tests for desktop browsers', function () {
             browser.setValue(selectorEmailInput, 'dummy@gmail.com');
             await browser.waitForValue(selectorEmailInput);
             assert.equal(await browser.getValue(selectorEmailInput), 'dummy@gmail.com')
+        });
+
+        it('can query selectors concatenated by ::', async function() {
+            await browser.url('/detail/mens_tshirts/YouTube+Organic+Cotton+T-Shirt+-+Grey');
+            const selector = 'shop-app app-header::#tabContainer shop-tabs::.iron-selected::a';
+
+            await browser.waitForExist(selector);
+            assert.equal(await browser.getText(selector), 'Men\'s T-Shirts')
         })
     });
 });
