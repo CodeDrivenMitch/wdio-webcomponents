@@ -60,12 +60,12 @@ The resulting JS shows how the plugin works internally. This is because you can 
 
 #### Querying light DOM
 
-Light selector: `.light` 
+Light selector: `my-awesome-element::.light` 
 
-Resulting JS: `document.querySelector('.light')`
+Resulting JS: `document.querySelector('my-awesome-element .light')`
 
-This is due to the light DOM element actually being a child of the parent document, as opposed to the custom element. 
-The Shadow element is a child of the `my-awesome-element` and the element lives in it's shadow root. 
+Since we do not need to descend into a shadowRoot, but `my-awesome-element` has one, we want to prevent descending. 
+The `::` syntax is here to provide this; When concatenating selectors using `::` they will be executed in the same `querySelector` call.
 
 Note that when there are nested shadowRoots, you need to include the parent Shadow Hosts. Example:
 
@@ -86,7 +86,7 @@ Note that when there are nested shadowRoots, you need to include the parent Shad
 </my-awesome-element>
 ```
 
-In the above case, to retrieve the `.nested-light` element, you will need to use `my-awesome-element .nested-light` selector. 
+In the above case, to retrieve the `.nested-light` element, you will need to use `my-awesome-element my-awesome-nested-element::.nested-light` selector. 
 
 
 ## Internal workings
