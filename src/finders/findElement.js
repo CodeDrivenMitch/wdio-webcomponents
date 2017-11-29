@@ -6,7 +6,7 @@
  */
 
 export default function (selector, multiple) {
-    var selectors = selector;
+    var selectors = selector.replace(/:skip-visible/i, '');
     if (document.body.createShadowRoot || document.body.attachShadow) {
         selectors = selectors.split(' ');
     }
@@ -20,7 +20,6 @@ export default function (selector, multiple) {
             }
 
             var iterSelector = selectors[i].split('::').join(' ');
-            debugger;
 
             if (i === selectors.length - 1 && multiple) {
                 // Final selector part and multiple=true, try to find multiple elements
