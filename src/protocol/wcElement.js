@@ -7,5 +7,5 @@ import findElement from "../finders/findElement";
  * @param {string=} selector
  */
 export default async function async(selector) {
-    return this.execute(findElement, selector, false);
+    return this.execute(findElement, selector.replace(/\:skip-visible/i, ''), false);
 }

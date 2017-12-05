@@ -29,10 +29,24 @@ You can use it just like you normally use webdriver. However, there are some pit
  
 - You can only use CSS selectors.
 - The selector should contain every Shadow Host on the way to the element. (Read down for explanation)
+- Visibility is checked recursively (Read down for explanation)
 
 For examples on how to use it, the internal test suite contains a lot of examples. These examples 'test' the Polymer example shop.
 
 You can find the test-suite at [https://github.com/Morlack/wdio-webcomponents/blob/master/test/wdio/specs/main.spec.js](https://github.com/Morlack/wdio-webcomponents/blob/master/test/wdio/specs/main.spec.js)
+
+### Visibility checks
+One of the things that are hard to solve with Selenium and Shadow DOM is checking the visiblity of a selected element. 
+
+This is because Selenium checks whether the element is visible or not by checking styling and attributes on the element and it's parents. 
+If the element, or one of it's parents, are hidden (such as when display is set to none) the element is considered invisible. 
+This becomes a problem when Selenium can't check outside the Shadow DOM, since the Shadow DOM can be located inside an element. 
+
+You can find the code where Selenium checks visibility here: https://github.com/SeleniumHQ/selenium/blob/master/javascript/atoms/dom.js#L437 (This is the Javascript version). 
+
+Because of the we have to check whether all shadow hosts on the way are visibile. This is built in and you don't have to do anything for it. 
+
+However, there are some cases where part of the visibility check should be skipped. For example when your element is located inside an invisible element (element itself is absolute with width and height, but it's parent has a height of 0 and thus it's invisible). In this case you can add `:skip-visible` to the element. For example, the selector 'could' become: `my-app my-dialog-wrapper:skip-visible my-element`. In this case, only the `my-app` and `my-element` will be checked for visibility.
 
 ### Shadow Host inclusion
 A Shadow host is an element which has at least a Shadow DOM, and might have a light DOM. The Light DOM is
