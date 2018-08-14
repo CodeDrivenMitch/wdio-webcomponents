@@ -3,7 +3,15 @@
   "version": "1.1.0",
   "description": "WebdriverIO plugin to handle shadow roots and DOMs",
   "main": "lib/index.js",
-  "keywords": ["webdriver", "shadow", "root", "dom", "webcomponents", "webcomponentsjs", "polymer"],
+  "keywords": [
+    "webdriver",
+    "shadow",
+    "root",
+    "dom",
+    "webcomponents",
+    "webcomponentsjs",
+    "polymer"
+  ],
   "homepage": "https://github.com/Morlack/wdio-webcomponents",
   "scripts": {
     "build": "npm run clean && babel ./src -d lib",
@@ -53,8 +61,8 @@
     "email": "mitchellherrijgers@gmail.com"
   },
   "license": "MIT",
-  "repository": { 
-    "type" : "git", 
-    "url" : "https://github.com/Morlack/wdio-webcomponents.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Morlack/wdio-webcomponents.git"
   }
 }
