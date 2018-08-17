@@ -23,7 +23,8 @@ export default function (selector, multiple) {
                 return lightElement;
             }
             // do best to support complex selectors and split the query
-            const splitSelector = selector.replace(/\s*([,>+~]+)\s*/g, '$1').split(' ');
+            const splitSelector = selector.match(/(([^\s\"']+\s*[,>+~]\s*)+|\'[^']*\'+|\"[^\"]*\"+|[^\s\"']+)+/g);
+
             const possibleElementsIndex = splitSelector.length - 1;
             const possibleElements = collectAllElementsDeep(splitSelector[possibleElementsIndex]);
             const findElements = findMatchingElement(splitSelector, possibleElementsIndex);
@@ -59,6 +60,7 @@ export default function (selector, multiple) {
             }
             return foundElement;
         };
+
     }
 
     function findParentOrHost(element) {
