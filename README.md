@@ -1,5 +1,10 @@
 # wdio-webcomponents
 
+!!!! Unsupported notice !!!
+I have developed this plugin in the times I developed on webcomponents with a Shadow DOM. I have not done this for quite some time however, and am currently not updating this plugin. If you'd like to take over support, send me a mail at mitchellherrijgers@gmail.com. Thanks!
+
+
+
 wdio-webcomponents is a webdriver.io plugin which makes webdriver compatible with Open Shadow Roots. 
 
 Shadow DOMs are a great solution to encapsulate your components from the rest of your application, but it prevents your components from easily being e2e tested. Normal Selenium commands fail,
