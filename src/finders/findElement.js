@@ -6,36 +6,100 @@
  */
 
 export default function (selector, multiple) {
-    var selectors = selector.replace(/:skip-visible/i, '');
-    if (document.body.createShadowRoot || document.body.attachShadow) {
-        selectors = selectors.split(' ');
+    function querySelectorAllDeep(selector) {
+        return _querySelectorDeep(selector, true);
     }
 
-    function findElement(selectors) {
-        var currentElement = document;
-        for (var i = 0; i < selectors.length; i++) {
-            // If the element is a shadow host, go into the shadowRoot
-            if (i > 0 && currentElement.shadowRoot) {
-                currentElement = currentElement.shadowRoot;
+    function querySelectorDeep(selector) {
+        return _querySelectorDeep(selector);
+    }
+
+    function _querySelectorDeep(selector, findMany) {
+        let lightElement = document.querySelector(selector);
+
+        if (document.head.createShadowRoot || document.head.attachShadow) {
+            // no need to do any special if selector matches something specific in light-dom
+            if (!findMany && lightElement) {
+                return lightElement;
             }
+            // do best to support complex selectors and split the query
+            const splitSelector = selector.match(/(([^\s\"']+\s*[,>+~]\s*)+|\'[^']*\'+|\"[^\"]*\"+|[^\s\"']+)+/g);
 
-            var iterSelector = selectors[i].split('::').join(' ');
-
-            if (i === selectors.length - 1 && multiple) {
-                // Final selector part and multiple=true, try to find multiple elements
-                currentElement = currentElement.querySelectorAll(iterSelector);
+            const possibleElementsIndex = splitSelector.length - 1;
+            const possibleElements = collectAllElementsDeep(splitSelector[possibleElementsIndex]);
+            const findElements = findMatchingElement(splitSelector, possibleElementsIndex);
+            if (findMany) {
+                return possibleElements.filter(findElements);
             } else {
-                currentElement = currentElement.querySelector(iterSelector);
+                return possibleElements.find(findElements);
             }
-
-            if (!currentElement) {
-                break;
+        } else {
+            if (!findMany) {
+                return lightElement;
+            } else {
+                return document.querySelectorAll(selector);
             }
         }
-
-
-        return currentElement
     }
 
-    return findElement(selectors);
+    function findMatchingElement(splitSelector, possibleElementsIndex) {
+        return (element) => {
+            let position = possibleElementsIndex;
+            let parent = element;
+            let foundElement = false;
+            while (parent) {
+                const foundMatch = parent.matches(splitSelector[position]);
+                if (foundMatch && position === 0) {
+                    foundElement = true;
+                    break;
+                }
+                if (foundMatch) {
+                    position--;
+                }
+                parent = findParentOrHost(parent);
+            }
+            return foundElement;
+        };
+
+    }
+
+    function findParentOrHost(element) {
+        const parentNode = element.parentNode;
+        return parentNode && (parentNode.host && parentNode.tagName != 'A') ? parentNode.host : parentNode === document ? null : parentNode;
+    }
+
+    /**
+     * Finds all elements on the page, inclusive of those within shadow roots.
+     * @param {string=} selector Simple selector to filter the elements by. e.g. 'a', 'div.main'
+     * @return {!Array<string>} List of anchor hrefs.
+     * @author ebidel@ (Eric Bidelman)
+     * License Apache-2.0
+     */
+    function collectAllElementsDeep(selector = null) {
+        const allElements = [];
+
+        const findAllElements = function(nodes) {
+            for (let i = 0, el; el = nodes[i]; ++i) {
+                allElements.push(el);
+                // If the element has a shadow root, dig deeper.
+                if (el.shadowRoot) {
+                    findAllElements(el.shadowRoot.querySelectorAll('*'));
+                }
+            }
+        };
+
+        findAllElements(document.querySelectorAll('*'));
+
+        return selector ? allElements.filter(el => el.matches(selector)) : allElements;
+    }
+
+    if (! multiple) {
+        if (!selector) {
+            return baseElement || document.documentElement;
+        } else {
+            return querySelectorDeep(selector);
+        }
+    } else {
+        return querySelectorAllDeep(selector);
+    }
 }

@@ -1,6 +1,5 @@
 import wcElement from "./protocol/wcElement.js";
 import wcElements from "./protocol/wcElements.js";
-import isVisible from "./commands/isVisible.js";
 
 class WDIOWebComponents {
 
@@ -13,7 +12,6 @@ class WDIOWebComponents {
         console.log("[wdio-webcomponents] Overriding native wdio element/elements commands!");
         browser.addCommand('element', wcElement.bind(browser), true);
         browser.addCommand('elements', wcElements.bind(browser), true);
-        browser.addCommand('isVisible', isVisible.bind(browser), true);
     }
 }
 
@@ -24,4 +22,3 @@ export function init(webdriverInstance, options) {
 
 // export also helpers for regression lib
 export {};
-    
